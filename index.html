@@ -89,6 +89,24 @@
   #bot form{display:flex;border-top:1px solid var(--line)}
   #bot input{flex:1;background:transparent;border:0;color:var(--text);padding:12px;font-size:.92rem;outline:none}
   #bot button{background:none;border:0;color:var(--pink);font-weight:800;padding:0 14px;cursor:pointer}
+  .navr{display:flex;gap:10px;align-items:center}
+  .btn.star{background:linear-gradient(90deg,var(--gold),#ffb020);color:#1a1200;box-shadow:0 0 30px rgba(255,213,74,.45)}
+  .press{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;margin-top:14px;color:#7b72a6;font-weight:700;font-size:.95rem}
+  .press a{color:var(--text);background:#ff4500;padding:4px 12px;border-radius:99px;text-decoration:none;box-shadow:0 0 22px rgba(255,69,0,.45)}
+  .press s{opacity:.7}
+  .receipt{max-width:520px;margin:26px auto 0;background:#fffbea;color:#1a1200;border-radius:6px;padding:26px 24px 20px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.88rem;text-align:left;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  .receipt::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;background:linear-gradient(-45deg,transparent 7px,#fffbea 0) 0 0/14px 14px repeat-x,linear-gradient(45deg,transparent 7px,#fffbea 0) 0 0/14px 14px repeat-x}
+  .receipt h4{text-align:center;font-size:1rem;letter-spacing:.15em;margin-bottom:4px}
+  .receipt .c{text-align:center;color:#7a6a2a;font-size:.78rem;margin-bottom:14px}
+  .receipt .r{display:flex;justify-content:space-between;gap:12px;padding:3px 0}
+  .receipt .r span:last-child{text-align:right;white-space:nowrap}
+  .receipt hr{border:0;border-top:2px dashed #c9b766;margin:10px 0}
+  .receipt .tot{font-weight:900;font-size:1.05rem}
+  .receipt .bar{margin-top:14px;height:38px;background:repeating-linear-gradient(90deg,#1a1200 0 2px,transparent 2px 4px,#1a1200 4px 7px,transparent 7px 9px,#1a1200 9px 10px,transparent 10px 13px)}
+  .m.b a{color:var(--gold);font-weight:800}
+  .paybtn{display:inline-block;margin-top:6px;background:var(--gold);color:#1a1200!important;padding:6px 12px;border-radius:99px;text-decoration:none;font-weight:900}
+  #botBtn::after{content:"1";position:absolute;top:-2px;right:-2px;background:var(--gold);color:#1a1200;font-size:.7rem;font-weight:900;width:20px;height:20px;border-radius:50%;display:grid;place-items:center}
+  #botBtn.seen::after{display:none}
   footer{border-top:1px solid var(--line);padding:30px 0 110px;color:#6d6592;font-size:.75rem}
   footer p{margin-bottom:8px}
   .confetti{position:fixed;top:-20px;font-size:1.6rem;z-index:100;pointer-events:none;animation:fall linear forwards}
@@ -99,12 +117,12 @@
 </head>
 <body>
 
-<div class="ticker"><span>🚨 BREAKING: INFINIVERSE™ valued at $∞ after founder describes idea to a stranger on a plane ✦ Series Z oversubscribed by 4,000% ✦ "We don't have a product, we have a vision" — CEO ✦ Revenue up 9,999% QoQ (from $1 to $100) ✦ Now hiring: Chief Synergy Officer ✦ The Moon has requested a demo ✦</span></div>
+<div class="ticker"><span>🚨 BREAKING: INFINIVERSE™ valued at $∞ after founder describes idea to a stranger on a plane ✦ Series Z oversubscribed by 4,000% ✦ "We don't have a product, we have a vision" — CEO ✦ Revenue up 9,999% QoQ (from $1 to $100) ✦ Now hiring: Chief Synergy Officer ✦ The Moon has requested a demo ✦ 🔥 Now trending on r/ClaudeAI ✦ 💳 Now accepting Web5 Payments™ (GitHub stars only) ✦ Visa and Mastercard declined our partnership. We declined them first ✦</span></div>
 
 <div class="wrap">
   <nav>
     <div class="logo"><b>INFINIVERSE</b>™</div>
-    <button class="btn" onclick="boom('🦄')">Raise Series Z</button>
+    <div class="navr"><a class="btn star" href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener">⭐ Star us on GitHub</a></div>
   </nav>
 
   <header class="hero">
@@ -124,6 +142,11 @@
     <p style="margin-top:40px;color:var(--muted);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase">Backed by visionaries</p>
     <div class="logos">
       <span>Kevin Capital</span><span>Moonshot Mutual</span><span>Hype Fund III</span><span>My Uncle's LLC</span><span>Vibes Ventures</span><span>A Guy Named Brad</span>
+    </div>
+    <p style="margin-top:28px;color:var(--muted);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase">As seen on</p>
+    <div class="press">
+      <a href="https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD" target="_blank" rel="noopener">🔥 r/ClaudeAI (real)</a>
+      <s>Forbes 30 Under 30</s><span>Kevin's group chat</span><span>The back of a napkin</span><span>Your mom's Facebook</span>
     </div>
   </header>
 </div>
@@ -170,7 +193,7 @@
         <div class="price">$∞<small style="font-size:1rem;color:var(--muted)">/mo</small></div>
         <p>For serious disruptors only.</p>
         <ul><li>Everything in Free</li><li>Unlimited synergy</li><li>Founder will reply "🔥" to your tweet</li><li>A blue checkmark (drawn by hand)</li></ul>
-        <button class="btn" onclick="boom('♾️')">Go Infinite</button>
+        <a class="btn star" href="#web5" onclick="boom('⭐')">Pay with Web5 ⭐</a>
       </div>
       <div class="card">
         <h3>Infinite + 1</h3>
@@ -180,6 +203,7 @@
         <button class="btn ghost" onclick="boom('🏦')">Contact Your Accountant</button>
       </div>
     </div>
+    <p class="fine" style="text-align:center;margin-top:18px;font-size:.85rem">All plans are payable exclusively through <a href="#web5" style="color:var(--gold)">Web5 Payments™</a>. Cards, cash, crypto and vibes are no longer accepted.</p>
   </div>
 </section>
 
@@ -229,15 +253,36 @@
   </div>
 </section>
 
-<section id="shark">
-  <div class="wrap">
-    <div class="card hot" style="text-align:center;padding:44px 24px">
-      <span class="tag">THE ONLY REAL THING ON THIS PAGE</span>
-      <span class="emoji" style="font-size:3rem">🦈</span>
-      <h2>Okay, one serious moment.</h2>
-      <p class="lead" style="margin:0 auto 22px">INFINIVERSE™ is a joke. <b>shark</b> is not. It's a free, open-source Claude Code plugin that runs your coding session like an engineering team: one operator, parallel lanes, audited merges, and root cause before every fix.<br><br>It won't make $1 trillion a month. It might save you a weekend.</p>
-      <a class="btn" href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener">⭐ Star shark-skills on GitHub</a>
-      <p class="fine" style="margin-top:14px">Every star raises our valuation by $1 billion (in the INFINIVERSE™ accounting system).</p>
+<section id="web5">
+  <div class="wrap" style="text-align:center">
+    <span class="badge">💳 INTRODUCING</span>
+    <h2 style="margin-top:14px">Web5 Payments™</h2>
+    <p class="lead" style="margin:0 auto">Web3 needed a wallet. Web4 got skipped. Web5 needs one click. It's the world's first payment rail with zero fees, zero gas and zero dollars. We accept exactly one currency: <b>GitHub stars</b>.</p>
+
+    <div class="receipt" aria-label="Web5 receipt">
+      <h4>INFINIVERSE™</h4>
+      <div class="c">Web5 Checkout · Terminal #∞ · Cashier: Biscuit 🐕</div>
+      <div class="r"><span>Access to $1T/month platform</span><span>$∞</span></div>
+      <div class="r"><span>Synergy (unlimited)</span><span>included</span></div>
+      <div class="r"><span>Gas fee</span><span>$0.00</span></div>
+      <div class="r"><span>Processing fee</span><span>$0.00</span></div>
+      <div class="r"><span>Founder's emotional support</span><span>priceless</span></div>
+      <hr>
+      <div class="r tot"><span>TOTAL DUE</span><span>1 ⭐</span></div>
+      <div class="r"><span>Payment method</span><span>GitHub star</span></div>
+      <div class="r"><span>Payee</span><span>shark-skills 🦈</span></div>
+      <hr>
+      <div class="c" style="margin:0">No refunds. Stars are final. Biscuit is watching.</div>
+      <div class="bar"></div>
+    </div>
+
+    <div style="margin-top:34px"><a class="btn star" href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener" onclick="boom('⭐')" style="font-size:1.1rem;padding:16px 30px">⭐ Pay 1 star with Web5</a></div>
+
+    <div class="card" style="max-width:720px;margin:40px auto 0;text-align:left">
+      <span class="tag" style="position:static;display:inline-block;margin-bottom:12px">THE ONLY REAL THING ON THIS PAGE</span>
+      <h3>🦈 Okay, one serious moment.</h3>
+      <p style="margin-top:8px">INFINIVERSE™ is a joke. <b style="color:var(--text)">shark</b> is not. It's a free, open-source Claude Code plugin that runs your coding session like an engineering team: one operator, parallel lanes, audited merges, and root cause before every fix.</p>
+      <p style="margin-top:10px">It won't make $1 trillion a month. It might save you a weekend. Read about it on <a href="https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD" target="_blank" rel="noopener" style="color:var(--gold)">r/ClaudeAI</a>, then pay your star on <a href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener" style="color:var(--gold)">GitHub</a>.</p>
     </div>
   </div>
 </section>
@@ -249,6 +294,7 @@
     <details><summary>Who built this?</summary><p>A god-tier AI with 5 quadrillion IQ and 1 billion years of experience. It finished in about 40 seconds and then asked if we wanted a calculator.</p></details>
     <details><summary>What's your moat?</summary><p>An actual moat. We dug it around the office. There are ducks.</p></details>
     <details><summary>Are you profitable?</summary><p>We are <i>pre</i>-profitable, the same way a toddler is pre-astronaut.</p></details>
+    <details><summary>How do I pay?</summary><p>Through <a href="#web5" style="color:var(--gold)">Web5 Payments™</a>, the only payment system where the money is fake and the gratitude is real. One click on the ⭐ at <a href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener" style="color:var(--gold)">shark-skills</a> and your account is settled forever.</p></details>
     <details><summary>Can I talk to someone?</summary><p>Our AI assistant SYNERGYBOT™ is in the corner and available 24/7. It knows one word.</p></details>
   </div>
 </section>
@@ -328,14 +374,14 @@
     const x=Math.random()*(ar.width-b.width)+b.width/2, y=Math.random()*(ar.height-b.height-30)+b.height/2;
     nm.style.left=x+'px'; nm.style.top=y+'px';
     am.textContent=`Attempts: ${tries} · ${pick(taunts)}`;
-    if(tries===15){am.textContent="OK fine, 15 tries. You made a mistake 15 times. Respect. 🏆";boom('🏆');}
+    if(tries===15){am.innerHTML='15 tries. That\'s 15 mistakes. The only mistake-free move left: <a href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener" style="color:var(--gold);font-weight:800">⭐ star shark</a>.';boom('⭐');}
   };
   nm.addEventListener('mouseenter',flee);
   nm.addEventListener('click',e=>{e.preventDefault();flee();}); // mobile taps flee too
 
   // ---------- IPO countdown that never arrives ----------
   const ipo=document.getElementById('ipo'), ipoMsg=document.getElementById('ipoMsg');
-  const excuses=["Delayed: market conditions (we checked our horoscope).","Delayed: CFO (spreadsheet) crashed.","Delayed: founder is 'finding himself' in Bali.","Delayed: Biscuit ate the S-1.","Delayed: we forgot to have a company.","Delayed: Mercury is in retrograde, and so is revenue."];
+  const excuses=["Delayed: underwriters want to see 1,000 GitHub stars first. ⭐","Delayed: Web5 payment rails still settling (please star faster).","Delayed: market conditions (we checked our horoscope).","Delayed: CFO (spreadsheet) crashed.","Delayed: founder is 'finding himself' in Bali.","Delayed: Biscuit ate the S-1.","Delayed: we forgot to have a company.","Delayed: Mercury is in retrograde, and so is revenue."];
   let t=10;
   setInterval(()=>{
     t--;
@@ -348,18 +394,32 @@
 
   // ---------- SYNERGYBOT ----------
   const bot=document.getElementById('bot'), log=document.getElementById('log');
-  const say=(txt,who)=>{const d=document.createElement('div');d.className='m '+who;d.textContent=txt;log.appendChild(d);log.scrollTop=log.scrollHeight;};
+  const say=(txt,who,html)=>{const d=document.createElement('div');d.className='m '+who;if(html)d.innerHTML=txt;else d.textContent=txt;log.appendChild(d);log.scrollTop=log.scrollHeight;};
+  const SHARK='https://github.com/tusharsrivastava/shark-skills';
+  const invoices=[
+    "💳 That consultation cost 1 ⭐. We only accept <b>Web5 Payments™</b>.",
+    "🧾 Invoice #∞ generated. Amount due: 1 GitHub star. Payable via <b>Web5</b>.",
+    "⚠️ Your synergy balance is low. Top up with 1 ⭐ through <b>Web5 Payments™</b>.",
+    "🐕 Biscuit has flagged your account as unpaid. Web5 accepts stars only.",
+    "📉 Our valuation dips every time you don't pay. Please settle with 1 ⭐.",
+    "🔐 Premium synergy is locked. Unlock it with a single Web5 payment."
+  ];
+  let unpaid=0;
+  const bill=()=>{unpaid++;say(pick(invoices)+(unpaid>2?` <i>(outstanding: ${unpaid} ⭐)</i>`:'')+`<br><a class="paybtn" href="${SHARK}" target="_blank" rel="noopener">⭐ Pay with Web5</a>`,'b',true);};
   document.getElementById('botBtn').onclick=()=>{
+    document.getElementById('botBtn').classList.add('seen');
     const open=bot.style.display==='block';
     bot.style.display=open?'none':'block';
-    if(!open&&!log.children.length) say("Hi! I'm SYNERGYBOT™. Ask me anything about our $1T/month platform.",'b');
+    if(!open&&!log.children.length) say("Hi! I'm SYNERGYBOT™. Ask me anything about our $1T/month platform. First question is free*.",'b');
   };
   const replies=["Synergy.","Synergy!","Synergy?","…synergy.","SYNERGY 🚀","Great question. Synergy.","I've escalated this to a human. They said synergy.","Have you considered synergy?","Per my last message: synergy."];
   document.getElementById('botForm').onsubmit=e=>{
     e.preventDefault();
     const inp=document.getElementById('botIn'), v=inp.value.trim(); if(!v) return;
     say(v,'u'); inp.value='';
-    setTimeout(()=>say(/refund/i.test(v)?"Refund is not in my vocabulary. Synergy is.":pick(replies),'b'),500+Math.random()*700);
+    const d=500+Math.random()*600;
+    setTimeout(()=>say(/refund/i.test(v)?"Refund is not in my vocabulary. Synergy is.":/free/i.test(v)?"*The asterisk means synergy.":pick(replies),'b'),d);
+    setTimeout(bill,d+900);
   };
 
   // ---------- confetti ----------
