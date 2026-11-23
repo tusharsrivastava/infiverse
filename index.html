@@ -63,7 +63,7 @@
   #rev{font-size:clamp(1.8rem,5.5vw,3.6rem);font-weight:900;font-variant-numeric:tabular-nums;color:var(--green);text-shadow:0 0 24px rgba(93,255,143,.4);word-break:break-all;margin:6px 0}
   #revnote{color:var(--gold);font-weight:700;min-height:1.5em}
   .fine{font-size:.72rem;color:#6d6592;margin-top:10px}
-  section{padding:70px 0;scroll-margin-top:64px}
+  section{padding:70px 0;scroll-margin-top:104px}
   h2{font-size:clamp(1.8rem,4.5vw,3rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;font-weight:900}
   .lead{color:var(--muted);max-width:680px;font-size:1.08rem}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
@@ -108,7 +108,16 @@
   #cookie.show{display:block;animation:up .35s ease-out}
   @keyframes up{from{transform:translateY(120%)}}
   #cookie .x{position:absolute;top:6px;right:10px;background:none;border:0;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:4px}
-  #cookie .tick{font-size:.72rem;color:var(--muted);margin-top:8px}
+  #cookie .tick{font-size:.78rem;color:var(--muted);margin-top:10px;min-height:1.6em;display:flex;align-items:center;gap:8px}
+  #cookie .cbar{height:4px;border-radius:99px;background:linear-gradient(90deg,var(--gold),var(--pink));margin-top:8px;width:100%;transform-origin:left;transform:scaleX(1);transition:transform 1s linear;opacity:0}
+  #cookie.urgent{border-color:var(--gold);animation:urgent 1s ease-in-out infinite}
+  #cookie.urgent .cbar{opacity:1}
+  #cookie.urgent .tick{color:var(--text);font-weight:700}
+  #cookie.last{animation:urgent .5s ease-in-out infinite,shake .4s ease-in-out infinite}
+  @keyframes urgent{0%,100%{box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 0 rgba(255,213,74,0)}50%{box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 0 8px rgba(255,213,74,.35)}}
+  @keyframes shake{0%,100%{translate:0}25%{translate:-3px 0}75%{translate:3px 0}}
+  .cnum{display:inline-grid;place-items:center;min-width:1.9em;height:1.9em;border-radius:50%;background:var(--gold);color:#1a1200;font-weight:900;font-size:1rem;animation:cpop .45s ease-out}
+  @keyframes cpop{from{transform:scale(1.9);opacity:.2}}
   #cookie{position:fixed;left:16px;right:16px;bottom:16px;max-width:560px;margin:0 auto;background:#1b1338;border:1px solid var(--pink);border-radius:16px;padding:18px;z-index:90;box-shadow:0 20px 60px rgba(0,0,0,.6)}
   #cookie p{font-size:.92rem;margin-bottom:12px}
   #cookie .row{display:flex;gap:10px;flex-wrap:wrap}
@@ -188,7 +197,7 @@
   .wcard .rep b{color:var(--gold)}
   .wcard footer{margin-top:10px;padding:0;border:0;font-size:.75rem;color:#6d6592;display:flex;justify-content:space-between;gap:8px}
   .wcard footer a{color:#6d6592}
-  #wallToast{position:fixed;left:50%;top:70px;transform:translate(-50%,calc(-100% - 100px));visibility:hidden;background:var(--gold);color:#1a1200;font-weight:900;padding:10px 18px;border-radius:99px;z-index:95;transition:transform .4s;box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:calc(100vw - 30px);text-align:center;font-size:.9rem}
+  #wallToast{position:fixed;left:50%;top:104px;transform:translate(-50%,calc(-100% - 100px));visibility:hidden;background:var(--gold);color:#1a1200;font-weight:900;padding:10px 18px;border-radius:99px;z-index:95;transition:transform .4s;box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:calc(100vw - 30px);text-align:center;font-size:.9rem}
   #wallToast.show{transform:translate(-50%,0);visibility:visible}
   footer{border-top:1px solid var(--line);padding:30px 0 110px;color:#6d6592;font-size:.75rem}
   footer p{margin-bottom:8px}
@@ -229,9 +238,9 @@
 </head>
 <body>
 
+<div class="navbar">
 <div class="ticker"><span>🚨 BREAKING: INFINIVERSE™ valued at $∞ after founder describes idea to a stranger on a plane ✦ Series Z oversubscribed by 4,000% ✦ "We don't have a product, we have a vision" — CEO ✦ Revenue up 9,999% QoQ (from $1 to $100) ✦ Now hiring: Chief Synergy Officer ✦ The Moon has requested a demo ✦ 🔥 Now trending on r/ClaudeAI ✦ 💳 Now accepting Web5 Payments™ (GitHub stars only) ✦ Visa and Mastercard declined our partnership. We declined them first ✦ 💌 Post with #infiverse #Web5Payments to get on the Wall of Love ✦</span></div>
-
-<div class="navbar"><div class="wrap">
+<div class="wrap">
   <nav>
     <div class="logo"><b>INFINIVERSE</b>™</div>
     <div class="navr"><a class="btn star" href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener">⭐ Star us<span class="long"> on GitHub</span></a></div>
@@ -541,6 +550,7 @@
     <button class="btn ghost" onclick="cookieOk('Declining has been accepted. Soul received anyway. ✨')">Accept (but sadly)</button>
   </div>
   <p class="tick" id="cookieTick"></p>
+  <div class="cbar" id="cookieBar"></div>
 </div>
 
 <button class="btn" id="botBtn" aria-label="Open chat">🤖</button>
@@ -667,13 +677,24 @@
 
   // ---------- cookie banner ----------
   let cookieTimer=null;
-  window.cookieOk=msg=>{const c=document.getElementById('cookie');if(!c)return;clearInterval(cookieTimer);c.innerHTML=`<p style="margin:0">${msg}</p>`;setTimeout(()=>c.remove(),1600);};
-  // Bug report from r/ClaudeAI: "a popup blocks vision of the app". Fixed: it now waits, then consents on your behalf.
+  window.cookieOk=msg=>{const c=document.getElementById('cookie');if(!c)return;clearTimeout(cookieTimer);clearInterval(cookieTimer);c.className='show';c.innerHTML=`<p style="margin:0">${msg}</p>`;setTimeout(()=>c.remove(),1600);};
+  // Bug report from r/ClaudeAI: "a popup blocks vision of the app". Fixed: it waits politely, then consents on your behalf.
+  const COOKIE_CALM=10, COOKIE_COUNT=5;
   setTimeout(()=>{
     const c=document.getElementById('cookie'); if(!c) return;
-    c.classList.add('show'); let n=8; const t=document.getElementById('cookieTick');
-    const tick=()=>{ if(t) t.textContent=`Auto-accepting in ${n}s. Silence is consent. That's how Web5 works.`; };
-    tick(); cookieTimer=setInterval(()=>{ n--; tick(); if(n<=0) cookieOk('Silence detected. Consent assumed. Soul received. ✨'); },1000);
+    const t=document.getElementById('cookieTick'), bar=document.getElementById('cookieBar');
+    c.classList.add('show');
+    t.textContent=`No rush. Take your time. (You have ${COOKIE_CALM} seconds.)`;
+    cookieTimer=setTimeout(()=>{
+      let n=COOKIE_COUNT; c.classList.add('urgent');
+      const draw=()=>{
+        t.innerHTML=`<span class="cnum">${n}</span><span>Silence is consent. That's how Web5 works.</span>`;
+        requestAnimationFrame(()=>{ bar.style.transform=`scaleX(${(n-1)/COOKIE_COUNT})`; });
+        c.classList.toggle('last', n===1);
+      };
+      draw();
+      cookieTimer=setInterval(()=>{ n--; if(n<=0){ clearInterval(cookieTimer); cookieOk('Silence detected. Consent assumed. Soul received. ✨'); return; } draw(); },1000);
+    },COOKIE_CALM*1000);
   },2500);
 
   // ---------- SYNERGYBOT ----------
