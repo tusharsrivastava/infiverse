@@ -25,10 +25,40 @@ This is the result.
 - 🤖 **SYNERGYBOT™**, an AI assistant that knows exactly one word
 - 🍪 **A cookie banner** where both buttons say "Accept"
 - 🐕 **Biscuit**, our Chief Vibes Officer
+- 🧮 **The Path to $1T™ Calculator**, with real math and a preset for "also the dogs"
+- 💳 **Web5 Payments™**, the only payment rail where the currency is GitHub stars
+- 💌 **A Wall of Love** of real, hand-picked posts tagged **#infiverse** and **#Web5Payments**
+
+## 💌 Get on the Wall of Love
+
+Post about INFINIVERSE™ anywhere with **#infiverse** or **#Web5Payments**. Biscuit reads them all and adds his
+favourites to the [Wall of Love](https://tusharsrivastava.github.io/infiverse/#wall) by hand.
+
+<details>
+<summary>Adding a post (for maintainers)</summary>
+
+Add an entry to the top of `items` in [`wall.json`](wall.json) and commit. The live page re-checks the file every
+minute, so anyone with the site open gets a "New review" popup when it lands.
+
+```json
+{
+  "id": "x:someone-1",
+  "platform": "x",
+  "author": "@someone",
+  "url": "https://x.com/someone/status/123",
+  "text": "What they said, exactly as they wrote it.",
+  "date": "2026-11-24T10:00:00Z",
+  "reply": "Optional INFINIVERSE™ reply. ⭐"
+}
+```
+
+`platform` is one of `reddit`, `x`, `bluesky`, `mastodon`, `github` or `other`. `id` just has to be unique.
+
+</details>
 
 ## Tech stack
 
-One HTML file. No framework, no build step, no dependencies, no revenue.
+One HTML file. No framework, no build step, no dependencies, no revenue. The Wall of Love is one JSON file.
 
 ## Our valuation model
 

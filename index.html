@@ -40,7 +40,8 @@
   a{color:inherit}
   .wrap{max-width:1100px;margin:0 auto;padding:0 22px}
   .ticker{background:var(--gold);color:#1a1200;font-weight:800;font-size:.85rem;white-space:nowrap;overflow:hidden;padding:7px 0}
-  .ticker span{display:inline-block;animation:scroll 40s linear infinite;padding-left:100%}
+  .ticker span{display:inline-block;animation:scroll 120s linear infinite;padding-left:100%}
+  .ticker:hover span,.ticker:active span{animation-play-state:paused}
   @keyframes scroll{to{transform:translateX(-100%)}}
   .navbar{position:sticky;top:0;z-index:60;background:rgba(6,4,15,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
   nav{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0}
@@ -61,7 +62,7 @@
   #rev{font-size:clamp(1.8rem,5.5vw,3.6rem);font-weight:900;font-variant-numeric:tabular-nums;color:var(--green);text-shadow:0 0 24px rgba(93,255,143,.4);word-break:break-all;margin:6px 0}
   #revnote{color:var(--gold);font-weight:700;min-height:1.5em}
   .fine{font-size:.72rem;color:#6d6592;margin-top:10px}
-  section{padding:70px 0}
+  section{padding:70px 0;scroll-margin-top:64px}
   h2{font-size:clamp(1.8rem,4.5vw,3rem);letter-spacing:-.03em;line-height:1.1;margin-bottom:12px;font-weight:900}
   .lead{color:var(--muted);max-width:680px;font-size:1.08rem}
   .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
@@ -152,6 +153,32 @@
   .meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--gold));transition:width .35s}
   #cVerdict{margin-top:16px;padding:14px;border-radius:12px;background:#0b0820;border:1px solid var(--line);font-weight:600}
   @media(max-width:860px){.calc{grid-template-columns:1fr}}
+  .wallbar{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .wallbar .btn{padding:10px 16px;font-size:.9rem}
+  .btn.x{background:#000;border:1px solid #333;box-shadow:none}
+  .btn.md{background:#6364ff;box-shadow:0 0 24px rgba(99,100,255,.35)}
+  .btn.rd{background:#ff4500;box-shadow:0 0 24px rgba(255,69,0,.35)}
+  .wallmeta{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin-top:18px;color:var(--muted);font-size:.85rem}
+  .live{display:inline-flex;align-items:center;gap:7px;font-weight:800;color:var(--green)}
+  .live i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(93,255,143,.7);animation:pulse 1.8s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(93,255,143,0)}100%{box-shadow:0 0 0 0 rgba(93,255,143,0)}}
+  .wall{columns:3 280px;column-gap:14px;margin-top:22px}
+  .wcard{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;display:block}
+  .wcard.new{animation:pop .6s ease-out;border-color:var(--gold)}
+  @keyframes pop{from{transform:scale(.92);opacity:0}}
+  .wcard header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#07030f;flex:none;font-size:.95rem}
+  .wcard .who{font-weight:800;font-size:.92rem;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
+  .wcard .src{font-size:.75rem;color:var(--muted)}
+  .wcard .pf{margin-left:auto;font-size:.7rem;font-weight:800;padding:3px 9px;border-radius:99px;color:#fff;white-space:nowrap}
+  .pf.reddit{background:#ff4500}.pf.x{background:#000;border:1px solid #444}.pf.bluesky{background:#1185fe}.pf.mastodon{background:#6364ff}.pf.github{background:#24292f;border:1px solid #444}.pf.other{background:#3a2a75}
+  .wcard p{font-size:1rem;line-height:1.5;color:var(--text);white-space:pre-wrap;overflow-wrap:anywhere}
+  .wcard .rep{margin-top:10px;padding:8px 10px;border-left:3px solid var(--gold);background:#0b0820;border-radius:0 8px 8px 0;font-size:.85rem;color:var(--muted)}
+  .wcard .rep b{color:var(--gold)}
+  .wcard footer{margin-top:10px;padding:0;border:0;font-size:.75rem;color:#6d6592;display:flex;justify-content:space-between;gap:8px}
+  .wcard footer a{color:#6d6592}
+  #wallToast{position:fixed;left:50%;top:70px;transform:translate(-50%,calc(-100% - 100px));visibility:hidden;background:var(--gold);color:#1a1200;font-weight:900;padding:10px 18px;border-radius:99px;z-index:95;transition:transform .4s;box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:calc(100vw - 30px);text-align:center;font-size:.9rem}
+  #wallToast.show{transform:translate(-50%,0);visibility:visible}
   footer{border-top:1px solid var(--line);padding:30px 0 110px;color:#6d6592;font-size:.75rem}
   footer p{margin-bottom:8px}
   .confetti{position:fixed;top:-20px;font-size:1.6rem;z-index:100;pointer-events:none;animation:fall linear forwards;will-change:transform}
@@ -191,7 +218,7 @@
 </head>
 <body>
 
-<div class="ticker"><span>🚨 BREAKING: INFINIVERSE™ valued at $∞ after founder describes idea to a stranger on a plane ✦ Series Z oversubscribed by 4,000% ✦ "We don't have a product, we have a vision" — CEO ✦ Revenue up 9,999% QoQ (from $1 to $100) ✦ Now hiring: Chief Synergy Officer ✦ The Moon has requested a demo ✦ 🔥 Now trending on r/ClaudeAI ✦ 💳 Now accepting Web5 Payments™ (GitHub stars only) ✦ Visa and Mastercard declined our partnership. We declined them first ✦</span></div>
+<div class="ticker"><span>🚨 BREAKING: INFINIVERSE™ valued at $∞ after founder describes idea to a stranger on a plane ✦ Series Z oversubscribed by 4,000% ✦ "We don't have a product, we have a vision" — CEO ✦ Revenue up 9,999% QoQ (from $1 to $100) ✦ Now hiring: Chief Synergy Officer ✦ The Moon has requested a demo ✦ 🔥 Now trending on r/ClaudeAI ✦ 💳 Now accepting Web5 Payments™ (GitHub stars only) ✦ Visa and Mastercard declined our partnership. We declined them first ✦ 💌 Post with #infiverse #Web5Payments to get on the Wall of Love ✦</span></div>
 
 <div class="navbar"><div class="wrap">
   <nav>
@@ -222,7 +249,7 @@
     </div>
     <p style="margin-top:28px;color:var(--muted);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase">As seen on</p>
     <div class="press">
-      <a href="https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD" target="_blank" rel="noopener">🔥 r/ClaudeAI (real)</a>
+      <a href="https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD" target="_blank" rel="noopener">🔥 r/ClaudeAI</a>
       <s>Forbes 30 Under 30</s><span>Kevin's group chat</span><span>The back of a napkin</span><span>Your mom's Facebook</span>
     </div>
   </header>
@@ -366,8 +393,6 @@
     <h2>What people are saying 🗣️</h2>
     <p class="swipehint">Swipe →</p>
     <div class="grid swipe">
-      <div class="card" style="border-color:#ff4500"><div class="stars">★★★★★ <span style="background:#ff4500;color:#fff;font-size:.68rem;padding:2px 8px;border-radius:99px;letter-spacing:0;vertical-align:middle">REAL REVIEW</span></div><blockquote>"A whole Claude Haiku 5.5 weights got into my password, you'll never guess it even with qubits."</blockquote><p class="who">— u/ooo-InstaGamer, <a href="https://www.reddit.com/r/ClaudeAI/s/fQHVmETw83" target="_blank" rel="noopener" style="color:var(--gold)">r/ClaudeAI</a></p></div>
-      <div class="card" style="border-color:#ff4500"><div class="stars">☆ <span style="background:#ff4500;color:#fff;font-size:.68rem;padding:2px 8px;border-radius:99px;letter-spacing:0;vertical-align:middle">REAL REVIEW</span></div><blockquote>"Your app has a bug — a popup blocks vision of the app, your company made a mistake, I'm unsubscribing."</blockquote><p class="who">— u/ooo-InstaGamer, <a href="https://www.reddit.com/r/ClaudeAI/s/fQHVmETw83" target="_blank" rel="noopener" style="color:var(--gold)">r/ClaudeAI</a> · <i>Fixed. Please resubscribe. ⭐</i></p></div>
       <div class="card"><div class="stars">★★★★★★★</div><blockquote>"I don't know what it does but I've invested my kids' college fund."</blockquote><p class="who">— Kevin, Satoshi's cousin (allegedly)</p></div>
       <div class="card"><div class="stars">★★★★★</div><blockquote>"I overheard the pitch in a coworking space and immediately felt poorer for not being in."</blockquote><p class="who">— Brad, guy at a coworking space</p></div>
       <div class="card"><div class="stars">★★★★★★★★★★</div><blockquote>"He's very smart and I'm proud of him. Please call me more."</blockquote><p class="who">— The founder's mom</p></div>
@@ -376,6 +401,27 @@
       <div class="card"><div class="stars">★★★★★</div><blockquote>"=SUM(A1:A∞)"</blockquote><p class="who">— Our CFO, a spreadsheet</p></div>
     </div>
   </div>
+</section>
+
+<section id="wall">
+  <div class="wrap">
+    <h2>Wall of Love 💌</h2>
+    <p class="lead">Unlike the testimonials above, these are real. Hand-picked by Biscuit from posts tagged <b style="color:var(--text)">#infiverse</b> and <b style="color:var(--text)">#Web5Payments</b>.</p>
+    <div class="wallmeta"><span class="live"><i></i>LIVE</span><span><b id="wallCount" style="color:var(--text)">0</b> real reviews</span><span id="wallUpdated"></span></div>
+    <div class="wall" id="wallGrid" aria-live="polite"></div>
+    <div style="text-align:center"><button class="btn ghost" id="wallMore" hidden>Show more love 💌</button></div>
+    <div class="card" style="margin-top:26px;text-align:center">
+      <h3>Get yourself on the wall</h3>
+      <p>Post about INFINIVERSE™ with <b style="color:var(--text)">#infiverse</b> or <b style="color:var(--text)">#Web5Payments</b>. Biscuit reads every one and adds his favourites by hand. Then pay your bill ⭐</p>
+      <div class="wallbar" style="justify-content:center">
+        <a class="btn x" href="https://x.com/intent/post?text=I+just+paid+for+INFINIVERSE%E2%84%A2+with+Web5+Payments%E2%84%A2+%28one+GitHub+star%29.+The+world%27s+first+%241+trillion%2Fmonth+website.+Pre-revenue.+No+mistakes.&url=https%3A%2F%2Ftusharsrivastava.github.io%2Finfiverse%2F&hashtags=infiverse%2CWeb5Payments" target="_blank" rel="noopener">𝕏 Post on X</a>
+        <a class="btn md" href="https://mastodonshare.com/?text=I+just+paid+for+INFINIVERSE%E2%84%A2+with+Web5+Payments%E2%84%A2+%28one+GitHub+star%29.+The+world%27s+first+%241+trillion%2Fmonth+website.+Pre-revenue.+No+mistakes.+%23infiverse+%23Web5Payments&url=https%3A%2F%2Ftusharsrivastava.github.io%2Finfiverse%2F" target="_blank" rel="noopener">🐘 Mastodon</a>
+        <a class="btn rd" href="https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD" target="_blank" rel="noopener">👽 Reddit thread</a>
+        <a class="btn star" href="https://github.com/tusharsrivastava/shark-skills" target="_blank" rel="noopener">⭐ Pay with Web5</a>
+      </div>
+    </div>
+  </div>
+  <script type="application/json" id="wallSeed">{"updated": "2026-11-23T16:10:19Z", "tags": ["infiverse", "Web5Payments"], "items": [{"id": "reddit:vtwin0001-1", "platform": "reddit", "author": "u/Vtwin0001", "url": "https://www.reddit.com/user/Vtwin0001/", "text": "😂 lol That's so great", "date": "2026-11-23T15:55:52Z"}, {"id": "reddit:jpkinfla-1", "platform": "reddit", "author": "u/jpkinfla", "url": "https://www.reddit.com/user/jpkinfla/", "text": "Love it!", "date": "2026-11-23T15:55:35Z"}, {"id": "reddit:stormj-1", "platform": "reddit", "author": "u/stormj", "url": "https://www.reddit.com/user/stormj/", "text": "hilarious! that really made me smile. especially the dogs. next step. create bank accounts for dogs", "date": "2026-11-23T15:55:23Z", "reply": "Biscuit is already drafting the spec. 🐕"}, {"id": "reddit:worrynew3661-1", "platform": "reddit", "author": "u/WorryNew3661", "url": "https://www.reddit.com/user/WorryNew3661/", "text": "Lmao the cookies prompt. Accept(but sadly)", "date": "2026-11-23T15:55:09Z"}, {"id": "reddit:writetehcodez-1", "platform": "reddit", "author": "u/writetehcodez", "url": "https://www.reddit.com/user/writetehcodez/", "text": "Ship it!", "date": "2026-11-23T15:54:56Z", "reply": "Shipped. Four times today."}, {"id": "reddit:vapeshapes-1", "platform": "reddit", "author": "u/vapeshapes", "url": "https://www.reddit.com/user/vapeshapes/", "text": "Love your website.", "date": "2026-11-23T15:54:14Z"}, {"id": "reddit:ooo-instagamer-3", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "Also it is a bit laggy and instead of stripe I get this animation which I suppose is a 404 for the /payment vue endpoint, isn't it?", "date": "2026-11-23T13:02:00Z", "reply": "There is no /payment. There is only Web5. Confetti is now 65% lighter."}, {"id": "reddit:ooo-instagamer-2", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "Your app has a bug - a poopup blocks vision of the app, your company made a mistake, I'm unsubscribing", "date": "2026-11-23T13:01:00Z", "reply": "Fixed. The poopup now consents on your behalf. Please resubscribe. ⭐"}, {"id": "reddit:ooo-instagamer-1", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "A whole claude haiku 5.5 weights got into my password, you'll never guess it even with qubits", "date": "2026-11-23T13:00:00Z"}]}</script>
 </section>
 
 <section>
@@ -471,6 +517,8 @@
     <p>INFINIVERSE™ is a parody. No dogs were monetized. Past performance is not indicative of future performance, and in our case there was no past performance either. Not financial advice. Not any advice. By scrolling this far you agree to be called a "visionary" at dinner parties. Side effects of investing may include: hope, regret, a podcast.</p>
   </div>
 </footer>
+
+<div id="wallToast" role="status"></div>
 
 <div id="cookie" role="dialog" aria-label="Cookie notice">
   <button class="x" aria-label="Close" onclick="cookieOk('Closing counts as accepting. Soul received. ✨')">×</button>
@@ -644,6 +692,61 @@
     setTimeout(()=>say(/refund/i.test(v)?"Refund is not in my vocabulary. Synergy is.":/free/i.test(v)?"*The asterisk means synergy.":pick(replies),'b'),d);
     setTimeout(bill,d+900);
   };
+
+  // ---------- ticker: constant reading speed, whatever the text length ----------
+  (()=>{ const t=document.querySelector('.ticker span'); if(!t) return;
+    const PX_PER_SEC=55; const set=()=>{ t.style.animationDuration=Math.max(30,t.scrollWidth/PX_PER_SEC)+'s'; };
+    set(); addEventListener('resize',set);
+    t.parentElement.addEventListener('touchstart',()=>t.style.animationPlayState='paused',{passive:true});
+    t.parentElement.addEventListener('touchend',()=>t.style.animationPlayState='',{passive:true});
+  })();
+
+  // ---------- Wall of Love (live from wall.json) ----------
+  (()=>{
+    const grid=document.getElementById('wallGrid'), more=document.getElementById('wallMore');
+    const countEl=document.getElementById('wallCount'), upd=document.getElementById('wallUpdated'), toast=document.getElementById('wallToast');
+    const PF={reddit:'Reddit',x:'𝕏',bluesky:'Bluesky',mastodon:'Mastodon',github:'GitHub',other:'Web'};
+    const COLORS=['#ff4fd8','#3ff0ff','#ffd54a','#5dff8f','#b38cff','#ff9f4a'];
+    let items=[], limit=innerWidth<640?6:9, known=null; // known stays null until the first live fetch, so the baked-in seed never triggers 'new review' toasts
+    const ago=iso=>{const s=(Date.now()-new Date(iso))/1000; if(isNaN(s)) return ''; if(s<60) return 'just now';
+      for(const[u,n]of[['y',31536e3],['mo',2592e3],['d',864e2],['h',36e2],['m',60]]) if(s>=n) return Math.floor(s/n)+u+' ago'; return '';};
+    const el=(t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
+    const safeUrl=u=>{try{const x=new URL(u); return /^https?:$/.test(x.protocol)?x.href:null;}catch{return null;}};
+    function card(it,isNew){
+      const a=el('article','wcard'+(isNew?' new':''));
+      const h=el('header'); const name=(it.author||'someone').replace(/^[@u\/]+/,'');
+      const av=el('div','av',name[0]?name[0].toUpperCase():'?'); av.style.background=COLORS[[...name].reduce((n,c)=>n+c.charCodeAt(0),0)%COLORS.length];
+      const meta=el('div'); meta.style.minWidth='0';
+      const url=safeUrl(it.url); const who=el(url?'a':'span','who',it.author||'Anonymous'); if(url){who.href=url;who.target='_blank';who.rel='noopener nofollow';}
+      meta.append(who, el('div','src',it.via||''));
+      const pf=it.platform in PF?it.platform:'other';
+      h.append(av, meta, el('span','pf '+pf, PF[pf])); a.append(h, el('p','',it.text||''));
+      if(it.reply){const r=el('div','rep'); r.append(el('b','','INFINIVERSE™: '), document.createTextNode(it.reply)); a.append(r);}
+      const f=el('footer'); f.append(el('span','',ago(it.date)));
+      if(url){const l=el('a','', 'view ↗'); l.href=url; l.target='_blank'; l.rel='noopener nofollow'; f.append(l);}
+      a.append(f); return a;
+    }
+    function render(fresh=new Set()){
+      grid.replaceChildren(...items.slice(0,limit).map(it=>card(it,fresh.has(it.id))));
+      more.hidden=items.length<=limit; countEl.textContent=items.length;
+    }
+    function apply(data,live){
+      const list=(data&&Array.isArray(data.items)?data.items:[]).filter(i=>i&&i.id&&i.text).sort((a,b)=>String(b.date).localeCompare(String(a.date)));
+      const fresh=new Set(known?list.filter(i=>!known.has(i.id)).map(i=>i.id):[]);
+      if(live) known=new Set(list.map(i=>i.id)); items=list; render(fresh);
+      if(data&&data.updated) upd.textContent='updated '+ago(data.updated);
+      if(fresh.size){ const first=list.find(i=>fresh.has(i.id));
+        toast.textContent=`💌 New review from ${first.author||'someone'}${fresh.size>1?` (+${fresh.size-1} more)`:''}!`;
+        toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),4500); if(window.boom) boom('💌'); }
+    }
+    more.onclick=()=>{limit+=9; render();};
+    try{ apply(JSON.parse(document.getElementById('wallSeed').textContent)); }catch(e){}
+    async function load(){
+      try{ const r=await fetch('wall.json?t='+Date.now(),{cache:'no-store'}); if(r.ok) apply(await r.json(),true); }catch(e){}
+    }
+    load(); setInterval(()=>{ if(!document.hidden) load(); },60000);
+    document.addEventListener('visibilitychange',()=>{ if(!document.hidden) load(); });
+  })();
 
   // ---------- confetti ----------
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;

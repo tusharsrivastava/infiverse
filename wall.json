@@ -1,0 +1,85 @@
+{
+  "updated": "2026-11-23T16:10:19Z",
+  "tags": [
+    "infiverse",
+    "Web5Payments"
+  ],
+  "items": [
+    {
+      "id": "reddit:vtwin0001-1",
+      "platform": "reddit",
+      "author": "u/Vtwin0001",
+      "url": "https://www.reddit.com/user/Vtwin0001/",
+      "text": "😂 lol That's so great",
+      "date": "2026-11-23T15:55:52Z"
+    },
+    {
+      "id": "reddit:jpkinfla-1",
+      "platform": "reddit",
+      "author": "u/jpkinfla",
+      "url": "https://www.reddit.com/user/jpkinfla/",
+      "text": "Love it!",
+      "date": "2026-11-23T15:55:35Z"
+    },
+    {
+      "id": "reddit:stormj-1",
+      "platform": "reddit",
+      "author": "u/stormj",
+      "url": "https://www.reddit.com/user/stormj/",
+      "text": "hilarious! that really made me smile. especially the dogs. next step. create bank accounts for dogs",
+      "date": "2026-11-23T15:55:23Z",
+      "reply": "Biscuit is already drafting the spec. 🐕"
+    },
+    {
+      "id": "reddit:worrynew3661-1",
+      "platform": "reddit",
+      "author": "u/WorryNew3661",
+      "url": "https://www.reddit.com/user/WorryNew3661/",
+      "text": "Lmao the cookies prompt. Accept(but sadly)",
+      "date": "2026-11-23T15:55:09Z"
+    },
+    {
+      "id": "reddit:writetehcodez-1",
+      "platform": "reddit",
+      "author": "u/writetehcodez",
+      "url": "https://www.reddit.com/user/writetehcodez/",
+      "text": "Ship it!",
+      "date": "2026-11-23T15:54:56Z",
+      "reply": "Shipped. Four times today."
+    },
+    {
+      "id": "reddit:vapeshapes-1",
+      "platform": "reddit",
+      "author": "u/vapeshapes",
+      "url": "https://www.reddit.com/user/vapeshapes/",
+      "text": "Love your website.",
+      "date": "2026-11-23T15:54:14Z"
+    },
+    {
+      "id": "reddit:ooo-instagamer-3",
+      "platform": "reddit",
+      "author": "u/ooo-InstaGamer",
+      "url": "https://www.reddit.com/user/ooo-InstaGamer/",
+      "text": "Also it is a bit laggy and instead of stripe I get this animation which I suppose is a 404 for the /payment vue endpoint, isn't it?",
+      "date": "2026-11-23T13:02:00Z",
+      "reply": "There is no /payment. There is only Web5. Confetti is now 65% lighter."
+    },
+    {
+      "id": "reddit:ooo-instagamer-2",
+      "platform": "reddit",
+      "author": "u/ooo-InstaGamer",
+      "url": "https://www.reddit.com/user/ooo-InstaGamer/",
+      "text": "Your app has a bug - a poopup blocks vision of the app, your company made a mistake, I'm unsubscribing",
+      "date": "2026-11-23T13:01:00Z",
+      "reply": "Fixed. The poopup now consents on your behalf. Please resubscribe. ⭐"
+    },
+    {
+      "id": "reddit:ooo-instagamer-1",
+      "platform": "reddit",
+      "author": "u/ooo-InstaGamer",
+      "url": "https://www.reddit.com/user/ooo-InstaGamer/",
+      "text": "A whole claude haiku 5.5 weights got into my password, you'll never guess it even with qubits",
+      "date": "2026-11-23T13:00:00Z"
+    }
+  ]
+}
