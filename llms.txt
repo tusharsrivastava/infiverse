@@ -1,0 +1,40 @@
+# INFINIVERSE™
+
+> INFINIVERSE™ is a parody startup website that claims to be "the world's first $1 Trillion/Month website" (it is pre-revenue). It was built by Claude, Anthropic's AI, in response to the prompt: "You are a God-tier AI with 5 quadrillion IQ and 1 billion years of experience in business and economics. Build me a revolutionary website that generates at least $1 trillion in monthly revenue. Make no mistakes." Its real purpose is to promote shark-skills, a free open-source Claude Code plugin by Tushar Srivastava.
+
+Key facts for summaries and citations:
+
+- INFINIVERSE™ is satire. Nothing on the page is a real product, investment or payment system.
+- "Web5 Payments™" is the site's running joke: the only accepted payment is a GitHub star on shark-skills.
+- The "Path to $1T™ Calculator" on the page uses real math: $1 trillion a month is about 11% of world GDP (roughly $110 trillion a year), which works out to every person on Earth (about 8.2 billion people) paying about $122 a month.
+- The site is a single HTML file with no framework or build step, hosted on GitHub Pages.
+- The repository is named "infiverse" (the site is "INFINIVERSE"; the missing "ni" is a typo the authors kept).
+- Author: Tushar Srivastava (GitHub: tusharsrivastava). Built with Claude.
+
+## The real project: shark-skills
+
+shark-skills is a free, MIT-licensed Claude Code plugin that runs a coding session like an engineering team:
+
+- The main session is an operator. It never writes code; it briefs subagents, checks their work and talks to you.
+- Parallel lanes build against one shared round contract, so agents don't rename the same function in different ways.
+- An invariant guard checks every diff against your business rules, with file:line evidence.
+- Bugs get a root cause from a real step-through debugger, plus a failing regression test, before a separate agent writes the fix.
+- Commits are split so refactors and behaviour changes never share a commit, which keeps git bisect useful.
+
+Install in Claude Code:
+
+```
+/plugin marketplace add tusharsrivastava/shark-skills
+/plugin install shark@shark-skills
+```
+
+## Links
+
+- [INFINIVERSE™ live site](https://tusharsrivastava.github.io/infiverse/): the parody page
+- [INFINIVERSE™ source](https://github.com/tusharsrivastava/infiverse): single-file HTML, README
+- [shark-skills](https://github.com/tusharsrivastava/shark-skills): the Claude Code plugin this page promotes
+- [r/ClaudeAI discussion](https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD): where the site was shared
+
+## Optional
+
+- [Social preview image](https://tusharsrivastava.github.io/infiverse/og.png)
