@@ -34,6 +34,7 @@
 <style>
   :root{--bg:#06040f;--panel:#120d26;--line:#2c2350;--text:#f4f0ff;--muted:#a79fc9;--gold:#ffd54a;--pink:#ff4fd8;--cyan:#3ff0ff;--green:#5dff8f;}
   *{box-sizing:border-box;margin:0;padding:0}
+  [hidden]{display:none!important}
   html{scroll-behavior:smooth}
   body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.55;overflow-x:hidden}
   body::before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 20% 10%,rgba(255,79,216,.18),transparent 40%),radial-gradient(circle at 80% 30%,rgba(63,240,255,.14),transparent 40%),radial-gradient(circle at 50% 90%,rgba(255,213,74,.12),transparent 45%);pointer-events:none;z-index:-1}
@@ -163,13 +164,22 @@
   .live{display:inline-flex;align-items:center;gap:7px;font-weight:800;color:var(--green)}
   .live i{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(93,255,143,.7);animation:pulse 1.8s infinite}
   @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(93,255,143,0)}100%{box-shadow:0 0 0 0 rgba(93,255,143,0)}}
-  .wall{columns:3 280px;column-gap:14px;margin-top:22px}
-  .wcard{break-inside:avoid;margin:0 0 14px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative;display:block}
+  .wall{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:row dense;gap:14px;margin-top:22px}
+  .wcard{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;position:relative;display:flex;flex-direction:column;min-width:0}
+  .wcard p{flex:1}
+  .wcard.w{grid-column:span 2}
+  .wcard.xl{grid-column:span 2;grid-row:span 2;background:linear-gradient(160deg,#1d1440,var(--panel) 60%);border-color:#3b2e6e}
+  .wcard.s p{font-size:1.2rem;font-weight:800;letter-spacing:-.01em;line-height:1.3}
+  .wcard.xl p{font-size:1.25rem;font-weight:700;line-height:1.45}
+  .wcard.s .rep{font-size:.8rem}
+  @media(max-width:860px){.wall{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.wcard.xl{grid-row:span 1}.wcard{padding:14px}.wcard.s p{font-size:1.05rem}.wcard.xl p{font-size:1.1rem}}
   .wcard.new{animation:pop .6s ease-out;border-color:var(--gold)}
   @keyframes pop{from{transform:scale(.92);opacity:0}}
-  .wcard header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .wcard header{display:flex;align-items:center;gap:10px;margin-bottom:10px;min-width:0}
   .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#07030f;flex:none;font-size:.95rem}
-  .wcard .who{font-weight:800;font-size:.92rem;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
+  .wcard .who{display:block;font-weight:800;font-size:.92rem;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-decoration:none}
+  .wcard footer .pf{margin-left:0;font-size:.65rem;padding:2px 8px}
+  .wcard footer .fl{display:flex;align-items:center;gap:8px;white-space:nowrap}
   .wcard .src{font-size:.75rem;color:var(--muted)}
   .wcard .pf{margin-left:auto;font-size:.7rem;font-weight:800;padding:3px 9px;border-radius:99px;color:#fff;white-space:nowrap}
   .pf.reddit{background:#ff4500}.pf.hackernews{background:#ff6600}.pf.x{background:#000;border:1px solid #444}.pf.bluesky{background:#1185fe}.pf.mastodon{background:#6364ff}.pf.github{background:#24292f;border:1px solid #444}.pf.other{background:#3a2a75}
@@ -411,7 +421,7 @@
     <p class="lead">Unlike the testimonials above, these are real. Hand-picked by Biscuit from posts tagged <b style="color:var(--text)">#infiverse</b> and <b style="color:var(--text)">#Web5Payments</b>.</p>
     <div class="wallmeta"><span class="live"><i></i>LIVE</span><span><b id="wallCount" style="color:var(--text)">0</b> real reviews</span><span id="wallUpdated"></span></div>
     <div class="wall" id="wallGrid" aria-live="polite"></div>
-    <div style="text-align:center"><button class="btn ghost" id="wallMore" hidden>Show more love 💌</button></div>
+    <div style="text-align:center;margin-top:20px"><button class="btn ghost" id="wallMore" hidden>Show more love 💌</button></div>
     <div class="card" style="margin-top:26px;text-align:center">
       <h3>Get yourself on the wall</h3>
       <p>Post about INFINIVERSE™ with <b style="color:var(--text)">#infiverse</b> or <b style="color:var(--text)">#Web5Payments</b>. Biscuit reads every one and adds his favourites by hand. Then pay your bill ⭐</p>
@@ -424,7 +434,7 @@
       </div>
     </div>
   </div>
-  <script type="application/json" id="wallSeed">{"updated": "2026-11-23T16:46:21Z", "tags": ["infiverse", "Web5Payments"], "items": [{"id": "reddit:vtwin0001-1", "platform": "reddit", "author": "u/Vtwin0001", "url": "https://www.reddit.com/user/Vtwin0001/", "text": "😂 lol That's so great", "date": "2026-11-23T15:55:52Z"}, {"id": "reddit:jpkinfla-1", "platform": "reddit", "author": "u/jpkinfla", "url": "https://www.reddit.com/user/jpkinfla/", "text": "Love it!", "date": "2026-11-23T15:55:35Z"}, {"id": "reddit:stormj-1", "platform": "reddit", "author": "u/stormj", "url": "https://www.reddit.com/user/stormj/", "text": "hilarious! that really made me smile. especially the dogs. next step. create bank accounts for dogs", "date": "2026-11-23T15:55:23Z", "reply": "Biscuit is already drafting the spec. 🐕"}, {"id": "reddit:worrynew3661-1", "platform": "reddit", "author": "u/WorryNew3661", "url": "https://www.reddit.com/user/WorryNew3661/", "text": "Lmao the cookies prompt. Accept(but sadly)", "date": "2026-11-23T15:55:09Z"}, {"id": "reddit:writetehcodez-1", "platform": "reddit", "author": "u/writetehcodez", "url": "https://www.reddit.com/user/writetehcodez/", "text": "Ship it!", "date": "2026-11-23T15:54:56Z", "reply": "Shipped. Four times today."}, {"id": "reddit:vapeshapes-1", "platform": "reddit", "author": "u/vapeshapes", "url": "https://www.reddit.com/user/vapeshapes/", "text": "Love your website.", "date": "2026-11-23T15:54:14Z"}, {"id": "hackernews:trainmyai-1", "platform": "hackernews", "author": "trainmyai", "url": "https://news.ycombinator.com/item?id=50610486", "text": "Infinite +1 love it", "date": "2026-11-23T13:45:00Z", "reply": "Mathematicians hate this one trick."}, {"id": "reddit:ooo-instagamer-3", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "Also it is a bit laggy and instead of stripe I get this animation which I suppose is a 404 for the /payment vue endpoint, isn't it?", "date": "2026-11-23T13:02:00Z", "reply": "There is no /payment. There is only Web5. Confetti is now 65% lighter."}, {"id": "reddit:ooo-instagamer-2", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "Your app has a bug - a poopup blocks vision of the app, your company made a mistake, I'm unsubscribing", "date": "2026-11-23T13:01:00Z", "reply": "Fixed. The poopup now consents on your behalf. Please resubscribe. ⭐"}, {"id": "reddit:ooo-instagamer-1", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "A whole claude haiku 5.5 weights got into my password, you'll never guess it even with qubits", "date": "2026-11-23T13:00:00Z"}, {"id": "hackernews:austin-cheney-1", "platform": "hackernews", "author": "austin-cheney", "url": "https://news.ycombinator.com/item?id=50610486", "text": "This was a pleasant surprise to wake up to.", "date": "2026-11-23T12:45:00Z", "reply": "Good morning from Biscuit. Your Web5 invoice is in the mail. 🐕"}]}</script>
+  <script type="application/json" id="wallSeed">{"updated": "2026-11-23T16:46:21Z", "tags": ["infiverse", "Web5Payments"], "items": [{"id": "reddit:vtwin0001-1", "platform": "reddit", "author": "u/Vtwin0001", "url": "https://www.reddit.com/user/Vtwin0001/", "text": "😂 lol That's so great", "date": "2026-11-23T15:55:52Z"}, {"id": "reddit:jpkinfla-1", "platform": "reddit", "author": "u/jpkinfla", "url": "https://www.reddit.com/user/jpkinfla/", "text": "Love it!", "date": "2026-11-23T15:55:35Z"}, {"id": "reddit:stormj-1", "platform": "reddit", "author": "u/stormj", "url": "https://www.reddit.com/user/stormj/", "text": "hilarious! that really made me smile. especially the dogs. next step. create bank accounts for dogs", "date": "2026-11-23T15:55:23Z", "reply": "Biscuit is already drafting the spec. 🐕"}, {"id": "reddit:worrynew3661-1", "platform": "reddit", "author": "u/WorryNew3661", "url": "https://www.reddit.com/user/WorryNew3661/", "text": "Lmao the cookies prompt. Accept(but sadly)", "date": "2026-11-23T15:55:09Z"}, {"id": "reddit:writetehcodez-1", "platform": "reddit", "author": "u/writetehcodez", "url": "https://www.reddit.com/user/writetehcodez/", "text": "Ship it!", "date": "2026-11-23T15:54:56Z", "reply": "Shipped. Four times today."}, {"id": "reddit:vapeshapes-1", "platform": "reddit", "author": "u/vapeshapes", "url": "https://www.reddit.com/user/vapeshapes/", "text": "Love your website.", "date": "2026-11-23T15:54:14Z"}, {"id": "hackernews:trainmyai-1", "platform": "hackernews", "author": "trainmyai", "url": "https://news.ycombinator.com/item?id=50610486", "text": "Infinite +1 love it", "date": "2026-11-23T13:45:00Z", "reply": "Mathematicians hate this one trick."}, {"id": "reddit:ooo-instagamer-3", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "Also it is a bit laggy and instead of stripe I get this animation which I suppose is a 404 for the /payment vue endpoint, isn't it?", "date": "2026-11-23T13:02:00Z", "reply": "There is no /payment. There is only Web5. Confetti is now 65% lighter."}, {"id": "reddit:ooo-instagamer-2", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "Your app has a bug - a poopup blocks vision of the app, your company made a mistake, I'm unsubscribing", "date": "2026-11-23T13:01:00Z", "reply": "Fixed. The poopup now consents on your behalf. Please resubscribe. ⭐", "size": "xl"}, {"id": "reddit:ooo-instagamer-1", "platform": "reddit", "author": "u/ooo-InstaGamer", "url": "https://www.reddit.com/user/ooo-InstaGamer/", "text": "A whole claude haiku 5.5 weights got into my password, you'll never guess it even with qubits", "date": "2026-11-23T13:00:00Z"}, {"id": "hackernews:austin-cheney-1", "platform": "hackernews", "author": "austin-cheney", "url": "https://news.ycombinator.com/item?id=50610486", "text": "This was a pleasant surprise to wake up to.", "date": "2026-11-23T12:45:00Z", "reply": "Good morning from Biscuit. Your Web5 invoice is in the mail. 🐕"}]}</script>
 </section>
 
 <section>
@@ -709,28 +719,38 @@
     const grid=document.getElementById('wallGrid'), more=document.getElementById('wallMore');
     const countEl=document.getElementById('wallCount'), upd=document.getElementById('wallUpdated'), toast=document.getElementById('wallToast');
     const PF={reddit:'Reddit',hackernews:'Hacker News',x:'𝕏',bluesky:'Bluesky',mastodon:'Mastodon',github:'GitHub',other:'Web'};
+    const PF_SHORT={reddit:'Reddit',hackernews:'HN',x:'𝕏',bluesky:'Bsky',mastodon:'Masto',github:'GitHub',other:'Web'};
+    // Bento sizing: one-liners become small tiles, longer stories get wide or feature tiles. wall.json can override with "size".
+    const sizeOf=it=>['s','w','xl'].includes(it.size)?it.size:((n)=>n<=60?'s':n<=175?'w':'xl')((it.text||'').length+(it.reply?it.reply.length*.6:0));
     const COLORS=['#ff4fd8','#3ff0ff','#ffd54a','#5dff8f','#b38cff','#ff9f4a'];
-    let items=[], limit=innerWidth<640?6:9, known=null; // known stays null until the first live fetch, so the baked-in seed never triggers 'new review' toasts
+    let items=[], limit=innerWidth<640?12:16, known=null; // known stays null until the first live fetch, so the baked-in seed never triggers 'new review' toasts
     const ago=iso=>{const s=(Date.now()-new Date(iso))/1000; if(isNaN(s)) return ''; if(s<60) return 'just now';
       for(const[u,n]of[['y',31536e3],['mo',2592e3],['d',864e2],['h',36e2],['m',60]]) if(s>=n) return Math.floor(s/n)+u+' ago'; return '';};
     const el=(t,c,txt)=>{const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e;};
     const safeUrl=u=>{try{const x=new URL(u); return /^https?:$/.test(x.protocol)?x.href:null;}catch{return null;}};
-    function card(it,isNew){
-      const a=el('article','wcard'+(isNew?' new':''));
+    function card(it,isNew,size){ const a=el('article','wcard '+size+(isNew?' new':''));
       const h=el('header'); const name=(it.author||'someone').replace(/^[@u\/]+/,'');
       const av=el('div','av',name[0]?name[0].toUpperCase():'?'); av.style.background=COLORS[[...name].reduce((n,c)=>n+c.charCodeAt(0),0)%COLORS.length];
       const meta=el('div'); meta.style.minWidth='0';
       const url=safeUrl(it.url); const who=el(url?'a':'span','who',it.author||'Anonymous'); if(url){who.href=url;who.target='_blank';who.rel='noopener nofollow';}
       meta.append(who, el('div','src',it.via||''));
       const pf=it.platform in PF?it.platform:'other';
-      h.append(av, meta, el('span','pf '+pf, PF[pf])); a.append(h, el('p','',it.text||''));
+      const badge=el('span','pf '+pf, size==='s'?PF_SHORT[pf]:PF[pf]);
+      if(size==='s') h.append(av, meta); else h.append(av, meta, badge);
+      a.append(h, el('p','',it.text||''));
       if(it.reply){const r=el('div','rep'); r.append(el('b','','INFINIVERSE™: '), document.createTextNode(it.reply)); a.append(r);}
-      const f=el('footer'); f.append(el('span','',ago(it.date)));
-      if(url){const l=el('a','', 'view ↗'); l.href=url; l.target='_blank'; l.rel='noopener nofollow'; f.append(l);}
+      const f=el('footer'); const fl=el('span','fl'); if(size==='s') fl.append(badge); fl.append(el('span','',ago(it.date))); f.append(fl);
+      if(url && size!=='s'){const l=el('a','', 'view ↗'); l.href=url; l.target='_blank'; l.rel='noopener nofollow'; f.append(l);}
       a.append(f); return a;
     }
     function render(fresh=new Set()){
-      grid.replaceChildren(...items.slice(0,limit).map(it=>card(it,fresh.has(it.id))));
+      const shown=items.slice(0,limit), sizes=shown.map(sizeOf);
+      // Bento fill: promote the wordiest small tiles to wide ones until the cells make full rows (no holes).
+      const cols=innerWidth<=860?2:4, cost={s:1,w:2,xl:cols===4?4:2};
+      let cells=sizes.reduce((n,z)=>n+cost[z],0);
+      const smalls=sizes.map((z,i)=>z==='s'?i:-1).filter(i=>i>=0).sort((a,b)=>(shown[b].text+(shown[b].reply||'')).length-(shown[a].text+(shown[a].reply||'')).length);
+      while(cells%cols && smalls.length){ sizes[smalls.shift()]='w'; cells++; }
+      grid.replaceChildren(...shown.map((it,i)=>card(it,fresh.has(it.id),sizes[i])));
       more.hidden=items.length<=limit; countEl.textContent=items.length;
     }
     function apply(data,live){
@@ -742,7 +762,8 @@
         toast.textContent=`💌 New review from ${first.author||'someone'}${fresh.size>1?` (+${fresh.size-1} more)`:''}!`;
         toast.classList.add('show'); setTimeout(()=>toast.classList.remove('show'),4500); if(window.boom) boom('💌'); }
     }
-    more.onclick=()=>{limit+=9; render();};
+    more.onclick=()=>{limit+=12; render();};
+    let rw; addEventListener('resize',()=>{clearTimeout(rw); rw=setTimeout(()=>render(),200);});
     try{ apply(JSON.parse(document.getElementById('wallSeed').textContent)); }catch(e){}
     async function load(){
       try{ const r=await fetch('wall.json?t='+Date.now(),{cache:'no-store'}); if(r.ok) apply(await r.json(),true); }catch(e){}
