@@ -4,6 +4,8 @@
 
 <p align="center">
   <a href="https://tusharsrivastava.github.io/infiverse/"><b>🚀 See it live</b></a>
+  &nbsp;•&nbsp;
+  <a href="https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD"><b>📣 As seen on r/ClaudeAI</b></a>
 </p>
 
 ---
