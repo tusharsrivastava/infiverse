@@ -6,6 +6,8 @@
   <a href="https://tusharsrivastava.github.io/infiverse/"><b>🚀 See it live</b></a>
   &nbsp;•&nbsp;
   <a href="https://www.reddit.com/r/ClaudeAI/s/zmWtvJUmPD"><b>📣 As seen on r/ClaudeAI</b></a>
+  &nbsp;•&nbsp;
+  <a href="https://news.ycombinator.com/item?id=50610486"><b>🟧 and Hacker News</b></a>
 </p>
 
 ---
@@ -52,7 +54,7 @@ minute, so anyone with the site open gets a "New review" popup when it lands.
 }
 ```
 
-`platform` is one of `reddit`, `x`, `bluesky`, `mastodon`, `github` or `other`. `id` just has to be unique.
+`platform` is one of `reddit`, `hackernews`, `x`, `bluesky`, `mastodon`, `github` or `other`. `id` just has to be unique.
 
 </details>
 

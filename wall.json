@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23T16:10:19Z",
+  "updated": "2026-11-23T16:46:21Z",
   "tags": [
     "infiverse",
     "Web5Payments"
@@ -56,6 +56,15 @@
       "date": "2026-11-23T15:54:14Z"
     },
     {
+      "id": "hackernews:trainmyai-1",
+      "platform": "hackernews",
+      "author": "trainmyai",
+      "url": "https://news.ycombinator.com/item?id=50610486",
+      "text": "Infinite +1 love it",
+      "date": "2026-11-23T13:45:00Z",
+      "reply": "Mathematicians hate this one trick."
+    },
+    {
       "id": "reddit:ooo-instagamer-3",
       "platform": "reddit",
       "author": "u/ooo-InstaGamer",
@@ -80,6 +89,15 @@
       "url": "https://www.reddit.com/user/ooo-InstaGamer/",
       "text": "A whole claude haiku 5.5 weights got into my password, you'll never guess it even with qubits",
       "date": "2026-11-23T13:00:00Z"
+    },
+    {
+      "id": "hackernews:austin-cheney-1",
+      "platform": "hackernews",
+      "author": "austin-cheney",
+      "url": "https://news.ycombinator.com/item?id=50610486",
+      "text": "This was a pleasant surprise to wake up to.",
+      "date": "2026-11-23T12:45:00Z",
+      "reply": "Good morning from Biscuit. Your Web5 invoice is in the mail. 🐕"
     }
   ]
 }
